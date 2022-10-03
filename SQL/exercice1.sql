@@ -1,4 +1,4 @@
--- Active: 1664351913126@@127.0.0.1@3306@bookstore
+-- Active: 1664351913126@@127.0.0.1@3306@exercice1
 DROP DATABASE IF EXISTS exercice1;
 
 CREATE DATABASE exercice1;
