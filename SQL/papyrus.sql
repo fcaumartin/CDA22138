@@ -162,3 +162,117 @@ select nomfou from fournis where numfou in (
 Lister les commandes (Numéro et date) dont le fournisseur est celui de
 la commande 70210 : */
 
+select * from entcom where numfou=(select numfou from entcom where numcom=70210);
+
+
+select e1.*
+from entcom e1
+join entcom e2 on  e1.numfou=e2.numfou
+where e2.numcom=70210;
+
+
+/* 14. Dans les articles susceptibles d’être vendus, lister les articles moins
+chers (basés sur Prix1) que le moins cher des rubans (article dont le
+premier caractère commence par R). On affichera le libellé de l’article
+et prix1 */
+
+
+
+select * 
+from vente
+where prix1 < (
+    select min(prix1) from vente where codart like 'r%'
+);
+
+
+
+/* 15. Afficher la liste des fournisseurs susceptibles de 
+livrer les produits
+dont le stock est inférieur ou égal à 150 % du stock d'alerte. 
+La liste est triée par produit puis fournisseur */
+
+
+select e.numfou
+from ligcom l
+join entcom e on e.numcom=l.numcom
+join produit p on l.codart=p.codart 
+where l.qtecde>l.qteliv and p.stkphy<=(1.5*p.stkale);
+
+/* 16. Éditer la liste des fournisseurs susceptibles de livrer les produit dont
+le stock est inférieur ou égal à 150 % du stock 
+d'alerte et un délai de livraison d'au plus 30 jours. 
+La liste est triée par fournisseur puis
+produit */
+
+select e.numfou
+from ligcom l
+join entcom e on e.numcom=l.numcom
+join produit p on l.codart=p.codart 
+join fournis f on f.numfou=e.numfou
+join vente v on f.numfou=v.numfou and p.codart=v.codart
+where 
+    l.qtecde>l.qteliv 
+and 
+    p.stkphy<=(1.5*p.stkale)
+and
+    v.delliv<=30;
+
+
+
+/* 17. Avec le même type de sélection que ci-dessus, sortir un 
+total des
+stocks par fournisseur trié par total décroissant */
+
+
+
+select f.nomfou, sum(p.stkphy)
+from ligcom l
+join entcom e on e.numcom=l.numcom
+join produit p on l.codart=p.codart 
+join fournis f on f.numfou=e.numfou
+join vente v on f.numfou=v.numfou and p.codart=v.codart
+where 
+    l.qtecde>l.qteliv 
+and 
+    p.stkphy<=(1.5*p.stkale)
+and
+    v.delliv<=30
+group by f.nomfou;
+
+
+
+/* 18. En fin d'année, sortir la liste des produits 
+dont la quantité réellement
+commandée dépasse 90% de la quantité annuelle prévue. */
+
+
+select p.codart, qteann, sum(qtecde)
+from produit p
+join ligcom l on l.codart=p.codart
+group by p.codart
+having sum(qtecde) > (qteann*0.9);
+
+
+
+
+/* 19. Calculer le chiffre d'affaire par 
+fournisseur pour l'année 93 sachant
+que les prix indiqués sont hors taxes 
+et que le taux de TVA est 20%. */
+
+select e.numfou, sum(l.qtecde*l.priuni)*1.20
+from entcom e
+join ligcom l on l.numcom=e.numcom
+where YEAR(e.datcom)=2018
+group by e.numfou;
+
+
+-- 20
+-- produits commandés chez les fournisseurs
+select codart, numfou 
+from ligcom
+join entcom on ligcom.numcom=entcom.numcom;
+
+-- catalogue
+select codart, numfou 
+from vente;
