@@ -1,3 +1,6 @@
+show databases;
+use exemple;
+
 -- Active: 1664351913126@@127.0.0.1@3306@exemple
 -- 1. Afficher toutes les informations concernant les employés.
 select *
@@ -13,7 +16,6 @@ select nom "nom de l'employe", dateemb, nosup, nodep, salaire
 from employe;
 
 -- 4. Afficher le titre de tous les employés.
-
 select titre from employe;
 
 -- 5. Afficher les différentes valeurs des titres des employés.

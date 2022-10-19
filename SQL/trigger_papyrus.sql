@@ -10,6 +10,7 @@ create table article_a_commander (
 
 
 
+delimiter |
 create trigger update_produit
 after update
 on produit
@@ -32,4 +33,4 @@ BEGIN
         insert into article_a_commander (codart, `date`, qte) 
         values (pro_id, NOW(), (stock2-stock1)-encmd);
     END IF;
-END;
+END|
