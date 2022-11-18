@@ -1,0 +1,39 @@
+    body {
+        margin: 0;
+    }
+    .ennoir {
+        color: black !important;
+    }
+    div {
+        border: 1px dashed blue;
+        padding: 10px;
+        margin: 15px;
+        display: block;
+    }
+    a {
+        display: inline;
+    }
+    #div1 {
+        color: #44ff88;
+        position: absolute;
+        left: 0px;
+        /* position: fixed;
+        right: 0px;
+        width: 50px;
+        top: 0px;
+        background-color: #d45151; */
+    }
+    #div2 {
+        color: #d45151;
+    }
+    .engras {
+        font-weight: bold;
+    }
+    .sousligne {
+        text-decoration: underline;
+    }
+
+    #div3 a {
+        margin-right: 20px;
+    }
+    
