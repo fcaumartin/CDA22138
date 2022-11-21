@@ -25,6 +25,11 @@ class ProduitFixtures extends Fixture
         $produit3->setPrix(333.33);
         $manager->persist($produit3);
 
+        $produit4 = new Produit();
+        $produit4->setLibelle("Harmonica");
+        $produit4->setPrix(444.44);
+        $manager->persist($produit4);
+
         $manager->flush();
     }
 }

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CatalogueController!{% endblock %}
+
+{% block body %}
+liste des produits
+
+    {% for p in produits %}
+        <div>
+            <hr>
+            {{ p.libelle }}
+            {{ p.prix | format_currency('EUR', locale='fr')}}
+        </div>
+    {% endfor %}
+
+{% endblock %}
