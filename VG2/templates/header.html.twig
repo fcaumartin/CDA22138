@@ -1,24 +1,32 @@
-<nav class="navbar navbar-expand-sm bg-light fond2">
+<nav class="navbar navbar-expand-sm bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Navbar</a>
+    <a class="navbar-brand" href="/">
+    <img src="https://cdn.worldvectorlogo.com/logos/guitar-center.svg" width="70" alt="">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+      {% for cat in categories %}
+    
         <li class="nav-item">
-          <a class="nav-link  couleur1"  href="/">Home</a>
+          <a 
+            class="nav-link  "  
+            href="/categorie/{{cat.id}}"
+          >
+            {{ cat.name }}
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link ">Disabled</a>
-        </li>
+
+      {% endfor %}
+
+
       </ul>
       <div>
-      <button>Clique moi</button>
+        <a href="">Se connecter</a>
       </div>
       
     </div>

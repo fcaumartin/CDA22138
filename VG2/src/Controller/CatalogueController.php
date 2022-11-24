@@ -22,12 +22,14 @@ class CatalogueController extends AbstractController
     }
 
     #[Route('/categorie/{categorie}', name: 'app_categorie')]
-    public function categorie(Categorie $categorie): Response
+    public function categorie(Categorie $categorie, CategorieRepository $repo): Response
     {
+        $categories = $repo->findAll();
 
         // dd($categorie);
         return $this->render('catalogue/categorie.html.twig', [
-            'categorie' => $categorie
+            'categorie' => $categorie,
+            'categories' => $categories
         ]);
     }
 }

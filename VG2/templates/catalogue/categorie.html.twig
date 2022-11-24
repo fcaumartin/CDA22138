@@ -9,8 +9,10 @@
         </h2>
 
                 {% for produit in categorie.produits %}
-                    <div>
+                    <div class="bordure-grise shadow">
+                        <img src="" alt="" srcset="">
                         {{ produit.libelle }}
+                        {{ produit.prix }}
                     </div>
                 {% endfor %}
         </div>

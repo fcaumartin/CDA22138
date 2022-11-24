@@ -9,3 +9,12 @@
 .couleur1 {
     color: red !important;
 }
+
+.bordure-grise {
+    border: 2px solid gainsboro;
+    border-radius: 5px;
+}
+
+.shadow {
+    box-shadow: 0 .5rem 1rem rgba(221, 24, 24, 0.15) !important;
+  }
