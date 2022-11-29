@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block body %}
+
+    {% for c in categories %}
+
+    <div>
+        <a href="/test2/{{c.id}}">
+            {{ c.name }}
+        </a>
+    </div>
+        
+    {% endfor %}
+
+{% endblock %}

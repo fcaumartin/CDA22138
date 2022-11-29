@@ -22,7 +22,7 @@ class Produit
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $prix = null;
 
-    #[ORM\ManyToOne(inversedBy: 'produits')]
+    #[ORM\ManyToOne(inversedBy: 'produits', fetch: "EAGER")]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
 
