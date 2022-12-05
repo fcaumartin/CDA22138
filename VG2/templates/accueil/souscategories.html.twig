@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    {% for item in liste_des_souscategories %}
+
+        <div>
+            <a href="/produits/{{ item.id }}">
+                {{ item.name }}
+            </a>
+        </div>
+        
+    {% endfor %}
+
+{% endblock %}

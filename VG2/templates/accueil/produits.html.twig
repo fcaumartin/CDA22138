@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    {% for item in liste_des_produits %}
+
+        <div>
+                {{ item.libelle }}
+        </div>
+        
+    {% endfor %}
+
+{% endblock %}
