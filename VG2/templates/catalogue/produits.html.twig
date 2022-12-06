@@ -7,14 +7,14 @@
         <div class="col-12 mb-3">
             
         </div>
-                {% for sc in liste %}
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 ">
+                {% for pro in liste %}
+                    <div class="col-12">
                         <div class="bordure-grise px-3 pt-3 mb-3 shadow">
-                            <a href="/produits/{{ sc.id }}">
-                                <img class="img-fluid w-100" src="https://amorce.org/placeholder/200x150" >
+                            <a href="/categorie/{{ pro.id }}">
                                 <h4 class="text-center">
-                                {{ sc.name}}
+                                {{ pro.libelle}}
                                 </h4>
+                                <a href="/add/{{ pro.id }}" class="btn btn-success">Ajouter au panier</a>
                             </a>
                         </div>
                     </div>

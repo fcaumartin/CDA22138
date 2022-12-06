@@ -11,7 +11,7 @@
         {% endblock %}
     </head>
     <body>
-        {% include 'header.html.twig' %}
+        {{ render(controller('App\\Controller\\NavController::index')) }}
         <div class="mb-4"></div>
 
         {% block body %}{% endblock %}

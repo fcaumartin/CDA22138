@@ -28,6 +28,8 @@ class AccueilController extends AbstractController
         // $cat = $repo1->find($categorie);
         // $scat = $cat->getSousCategories();
 
+        // ou 
+        
         $scat = $repo2->findBy([
             "categorie" => $categorie
         ]);
@@ -40,8 +42,6 @@ class AccueilController extends AbstractController
     #[Route('/produits/{souscategorie}', name: 'app_produits')]
     public function produits(ProduitRepository $repo,  $souscategorie): Response
     {
-        // $cat = $repo1->find($categorie);
-        // $scat = $cat->getSousCategories();
 
         $produits = $repo->findBy([
             "sousCategorie" => $souscategorie
