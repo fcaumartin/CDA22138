@@ -25,8 +25,16 @@
 
 
       </ul>
-      <div>
+      <div class="me-5">
         <a href="/panier">panier {{ panier | length }}</a>
+      </div>
+
+      <div>
+        {% if app.user %}
+            <a href="/logout">se déconnecter</a>
+        {% else %}
+            <a href="/login">se connecter</a>
+        {% endif %}
       </div>
       
     </div>
