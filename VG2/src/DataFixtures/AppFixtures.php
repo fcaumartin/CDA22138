@@ -5,7 +5,10 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use App\Entity\Produit;
 use App\Entity\Categorie;
+use App\Entity\Commande;
+use App\Entity\SeCompose;
 use App\Entity\SousCategorie;
+use DateTime;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -62,7 +65,22 @@ class AppFixtures extends Fixture
         $p2->setSousCategorie($c4);
         $manager->persist($p2);
 
+        $com1 = new Commande();
+        $com1->setUser($u1);
+        $com1->setDateCommande(new DateTime());
+        $manager->persist($com1);
 
+        $sc1 = new SeCompose();
+        $sc1->setProduit($p1);
+        $sc1->setCommande($com1);
+        $sc1->setQuantite(5);
+        $manager->persist($sc1);
+
+        $sc2 = new SeCompose();
+        $sc2->setProduit($p2);
+        $sc2->setCommande($com1);
+        $sc2->setQuantite(2);
+        $manager->persist($sc2);
 
         $manager->flush();
     }
