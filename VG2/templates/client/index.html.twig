@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientController!{% endblock %}
+
+{% block body %}
+
+    {{ form_start(formulaire) }}
+
+        {{ form_row(formulaire.prenom)}}
+
+        <div class="col-6">
+        {{ form_row(formulaire.nom)}}
+        
+        </div>
+        
+        <div class="col-6">
+        {{ form_row(formulaire.ville)}}
+        </div>
+
+    {{ form_end(formulaire) }}
+
+{% endblock %}
