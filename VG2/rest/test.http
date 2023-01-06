@@ -1,0 +1,43 @@
+GET http://127.0.0.1:8000/api/produits
+Accept: application/json
+
+###
+GET http://127.0.0.1:8000/api/produits/1
+Accept: application/json
+
+###
+POST http://127.0.0.1:8000/api/produits
+Content-type: application/json
+
+{
+    "libelle": "nouveau produit",
+    "prix": "200",
+    "sousCategorie": "/api/sous_categories/1"
+}
+
+###
+PUT http://127.0.0.1:8000/api/produits/3
+Content-type: application/json
+
+{
+    "libelle": "nouveau produit (modif)"
+}
+
+###
+DELETE  http://127.0.0.1:8000/api/produits/4
+
+
+
+
+
+
+
+
+
+
+
+
+###
+GET http://127.0.0.1:8000/api/sous_categories
+Accept: application/json
+
