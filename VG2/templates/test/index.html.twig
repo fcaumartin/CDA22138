@@ -4,14 +4,7 @@
 
 {% block body %}
 
-    {% for c in categories %}
-
-    <div>
-        <a href="/test2/{{c.id}}">
-            {{ c.name }}
-        </a>
-    </div>
-        
-    {% endfor %}
+    <div id="app"></div>
+    {{ encore_entry_script_tags('app1') }}
 
 {% endblock %}
