@@ -1,0 +1,10 @@
+class Client{
+    id
+    nom
+    prenom
+
+}
+
+class Commande {
+    id
+}

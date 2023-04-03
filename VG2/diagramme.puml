@@ -1,0 +1,16 @@
+class Formation {
+    id,
+    nom
+}
+
+class Stagiaire {
+    id,
+    nom: string,
+    prenom
+}
+
+
+
+
+
+Formation "1" -- "*" Stagiaire

@@ -1,0 +1,12 @@
+class Client {
+    id,
+    nom
+}
+
+class Commande {
+    id,
+    date
+}
+
+
+Client -- Commande
