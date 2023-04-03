@@ -1,0 +1,38 @@
+GET https://127.0.0.1:8000/api/produits
+Accept: application/json
+
+###
+
+GET https://127.0.0.1:8000/api/produits/1
+Accept: application/json
+
+###
+
+POST https://127.0.0.1:8000/api/produits
+Accept: application/json
+Content-Type: application/json
+
+{
+  "libelle": "test mikl",
+  "prix": "9999",
+  "sousCategorie": "/api/sous_categories/1"
+}
+
+###
+
+PUT https://127.0.0.1:8000/api/produits/1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "prix": "9999"
+}
+
+###
+
+DELETE https://127.0.0.1:8000/api/produits/5
+Accept: application/json
+
+
+
+###

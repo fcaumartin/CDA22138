@@ -1,0 +1,36 @@
+GET https://127.0.0.1:8000/api/produits
+Accept: application/json
+
+###
+
+POST https://127.0.0.1:8000/api/produits
+Accept: application/json
+Content-Type: application/json
+
+{
+    "libelle": "piano666",
+    "prix": "666",
+    "sousCategorie": "/api/sous_categories/1"
+}
+
+###
+
+GET https://127.0.0.1:8000/api/produits/7
+Accept: application/json
+
+###
+
+DELETE https://127.0.0.1:8000/api/produits/8
+Accept: application/json
+
+
+###
+
+
+PUT https://127.0.0.1:8000/api/produits/13
+Accept: application/json
+Content-Type: application/json
+
+{
+    "prix": "9999"
+}
