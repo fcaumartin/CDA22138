@@ -20,35 +20,47 @@ function getDirContents($dir, &$results = array()) {
     return $results;
 }
 
-foreach (getDirContents('../src') as $value) {
+foreach (getDirContents('./src') as $value) {
     require ($value);
     
 }
 
 $entities = [];
+$graph = [];
 
 foreach (get_declared_classes() as $value) {
     $entity_name = "";
     $reflector = new \ReflectionClass($value);
     $attr = $reflector->getAttributes();  
     foreach ($attr as $a) {
-        // echo "*** " . $a->getName() . "\n";
+        // echo "" . $reflector->getShortName() . "\n";
         if ($a->getName() == "Doctrine\ORM\Mapping\Entity") {
-            $entity_name = $reflector->getName();    
+            $entity_name = $reflector->getShortName();    
         }
     }  
     $properties = [];
     $props = $reflector->getProperties();  
     foreach ($props as $p) {
-        // echo "*** " . $p->getName() . "\n";
+        // echo "**** " . $p->getName() . "\n";
         // if ($p->getName() == "Doctrine\ORM\Mapping\Entity") {
             // $entities[] = $name;
         // }
         $p_attrs = $p->getAttributes();  
         foreach ($p_attrs as $p_a) {
-            // echo "***>>> " . $p_a->getName() . "\n";
+            // echo ">>>>>>>> " . $p_a->getName() . "\n";
             if ($p_a->getName() == "Doctrine\ORM\Mapping\Column") {
                 $properties[] = $p->getName();
+            }
+            // $last = explode("\\",$p_a->getName());
+            @$last = end ((explode("\\",$p_a->getName())));
+            if (in_array($last, ["OneToMany", "ManyToOne", "ManyToMany", "OneToOne"])) {
+                foreach($p_a->getArguments() as $arg_k => $arg_v) {
+                    if ($arg_k == "targetEntity") {
+                        // echo ">>>>>>>>>>>> $arg_v\n";
+                        $graph[] = [$reflector->getShortName(), @end ((explode("\\",$arg_v))), $last];
+                    }
+                }
+                $properties[] = "**" . $p->getName() . "**";
             }
         }  
     }
@@ -56,13 +68,26 @@ foreach (get_declared_classes() as $value) {
     
 } 
 
+$data = "";
+foreach ($entities as $key => $props) {
+    $data .= "class $key {\n";
+        foreach ($props as $v) {
+            $data .= "\t$v\n";
+        }
+    $data .= "}\n\n";
+}
 
-print_r($entities);
+foreach ($graph as $v) {
+    if ($v[2] == "OneToMany")
+        $data .= $v[0] . " \"1\"--\"*\" " . $v[1] . "\n";
+    if ($v[2] == "ManyToOne")
+        $data .= $v[0] . " \"*\"--\"1\" " . $v[1] . "\n";
+    if ($v[2] == "ManyToMany")
+        $data .= $v[0] . " \"*\"--\"*\" " . $v[1] . "\n";
+    if ($v[2] == "OneToOne")
+        $data .= $v[0] . " \"1\"--\"1\" " . $v[1] . "\n";
+}
 
+$data.= "\n\nhide methods\nhide circle\n\n";
+file_put_contents("./index.puml", $data);
 
-// $reflector = new \ReflectionClass(Produit::class);
-// $attributes = $reflector->getAttributes();
-
-// foreach ($attributes as $key => $value) {
-//     echo "$key $value\n";
-// }
