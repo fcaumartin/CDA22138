@@ -1,0 +1,60 @@
+class Categorie {
+	id
+	name
+	**sousCategories**
+}
+
+class Client {
+	id
+	nom
+	prenom
+	ville
+}
+
+class Commande {
+	id
+	date_commande
+	**user**
+	**seComposes**
+}
+
+class Produit {
+	id
+	libelle
+	prix
+	**sousCategorie**
+	**seComposes**
+}
+
+class SeCompose {
+	id
+	quantite
+	**produit**
+	**commande**
+}
+
+class SousCategorie {
+	id
+	name
+	**categorie**
+	**produits**
+}
+
+class User {
+	id
+	email
+	roles
+	password
+	**commandes**
+}
+
+Categorie "1"--"*" SousCategorie
+Commande "1"--"*" SeCompose
+Produit "1"--"*" SeCompose
+SousCategorie "1"--"*" Produit
+User "1"--"*" Commande
+
+
+hide methods
+hide circle
+

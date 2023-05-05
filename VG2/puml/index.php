@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__DIR__).'/vendor/autoload.php';
+require_once './vendor/autoload.php';
 
 function getDirContents($dir, &$results = array()) {
     $files = scandir($dir);
@@ -89,5 +89,5 @@ foreach ($graph as $v) {
 }
 
 $data.= "\n\nhide methods\nhide circle\n\n";
-file_put_contents("./index.puml", $data);
+file_put_contents("./puml/index.puml", $data);
 
